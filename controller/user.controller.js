@@ -1,4 +1,5 @@
-const Validator = require("validator")
+const Validator = require("validator");
+const userModel = require("../models/user.model");
 const UserModel = require("../models/user.model")
 
 function getAllUsers(req,res){
@@ -60,6 +61,46 @@ function getUserByEmail(req,res){
     })
 }
 
+function updateUser(req,res){
+    let firstname = req.body.firstname
+    let lastname = req.body.lastname
+    let email = req.body.email
+    let password = req.body.password
+    let userId = req.params.userId
+
+    let user = new UserModel({
+        
+    })
+    UserModel.updateOne({"_id": userId},{$set: {user}})
+
+}
+
+// function updateUser(req,res){
+//     let userId = req.params.userId
+//     let user
+//     userModel.updateOne({"_id":ObjectId(userId)},{$set:{}})
+// }
+
+function deleteUser(req,res){
+    let userId = req.params.userId
+    UserModel.deleteOne({"_id" : userId},function(err,success){
+        if(err){
+            res.json({
+                status:-1,
+                msg:"Error",
+                data:"Please try again"
+            })
+        } else {
+            res.json({
+                status : 200,
+                msg : "Deleted",
+                data : "User id deleted"
+            })
+        }
+    })
+}
+
 module.exports.getAllUsers = getAllUsers
 module.exports.getUserById = getUserById
 module.exports.getUserByEmail = getUserByEmail
+module.exports.deleteUser = deleteUser

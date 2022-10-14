@@ -13,6 +13,7 @@ app.post("/signup",sessionController.signup)
 app.get("/users",userController.getAllUsers)
 app.get("/users/:userId",userController.getUserById)
 app.post("/users",userController.getUserByEmail)
+app.delete("/usersdel/:userId",userController.deleteUser)
 
 let port = 9898
 
