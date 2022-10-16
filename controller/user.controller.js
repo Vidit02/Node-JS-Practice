@@ -67,11 +67,25 @@ function updateUser(req,res){
     let email = req.body.email
     let password = req.body.password
     let userId = req.params.userId
+    //backend validation 
+    //find id -> user -> email -> json 
+    
 
-    let user = new UserModel({
-        
+    UserModel.updateOne({"_id": userId},{$set: {"email" : email}},function(err,success){
+        if(err){
+            res.json({
+            status:-1,
+            msg:"Error",
+            data:"Please try again"
+            })
+        } else {
+        res.json({
+            status : 200,
+            msg : "Updated",
+            data : success
+        })
+        }
     })
-    UserModel.updateOne({"_id": userId},{$set: {user}})
 
 }
 
@@ -104,3 +118,4 @@ module.exports.getAllUsers = getAllUsers
 module.exports.getUserById = getUserById
 module.exports.getUserByEmail = getUserByEmail
 module.exports.deleteUser = deleteUser
+module.exports.updateUser = updateUser

@@ -14,6 +14,7 @@ app.get("/users",userController.getAllUsers)
 app.get("/users/:userId",userController.getUserById)
 app.post("/users",userController.getUserByEmail)
 app.delete("/usersdel/:userId",userController.deleteUser)
+app.put("/users/:userId",userController.updateUser)
 
 let port = 9898
 
