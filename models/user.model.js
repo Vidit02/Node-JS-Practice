@@ -5,7 +5,11 @@ const UserSchema = new mongoose.Schema({
     firstname: String,
     lastname: String,
     email: String,
-    password: String
+    password: String,
+    role : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "roles"
+    }
 });
 
 //exporting the model
